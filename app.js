@@ -46,5 +46,7 @@ app.use((req,res,next)=>{
 });
 
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, ()=>{
+    console.log("Server running at port : " + process.env.PORT);
+});
 
