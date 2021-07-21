@@ -1,0 +1,44 @@
+.header {
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 80px;
+    width: 100%;
+}
+
+.header img{
+    height: 70px;
+    width: 150px;
+}
+
+.row{
+    margin-top: 10%;
+}
+
+.btn{
+    width: 60%px;
+    height: 70px;
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 25px;
+    background-color: tomato;
+    color: white;
+}
+.btn:hover{
+   background-color: rgb(211, 60, 34);
+   color: white;
+}
+a{
+    text-decoration: none;
+}
+.top-button{
+    float:right;
+    padding: 10px 20px 0px 0px;
+}
+.top-button button{
+    background: transparent;
+    border: none;
+}

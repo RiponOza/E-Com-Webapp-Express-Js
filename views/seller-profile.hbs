@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap-css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/seller-profile.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="/jquery/jquery.js"></script>
+    <title>profile</title>
+</head>
+
+
+<body>
+    <!--SIDEBAR-->
+    <div class="sidebar">
+        <header>
+            {{#if image}}
+            <img class="profile-pic" src="images/{{image}}" alt="profile pic">
+            {{else}}
+            <img class="profile-pic" src="images/user_default_logo.jpg" alt="profile pic">
+            {{/if}}
+            <span class="cross"><i class="fa fa-times" aria-hidden="true"></i></span>
+        </header>
+        <ul>
+            <li>
+                <a href="/seller-dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="/add-product"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Product</a>
+            </li>
+            <li>
+                <a href="/my-products"><i class="fa fa-linode" aria-hidden="true"></i> My Products</a>
+            </li>
+            <li>
+                <a href="/seller-profile?id={{email}}"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a>
+            </li>
+            <li>
+                <a href="/seller-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+    <!--SIDEBAR ENDING-->
+
+    <div class="content row">
+        <header class="main-header">
+            <button class="sidebar-button"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></button>
+            <img class="logo" src="images/logo.jpg" alt="logo">
+        </header>
+
+
+        <!-- POPUP -->
+        <div class="popup" id="popup-1">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup()">×</div>
+                <input type="file" class="upload" id="imageFile" name="imageFile" /><br><br>
+                <div id="alert-box"></div>
+                <button class="btn btn-success" onclick="uploadImage()">upload</button>
+            </div>
+        </div>
+        <!-- POPUP END -->
+
+
+        <!--CONTENT START-->
+        <div class="col-md-3"></div>
+        <div class="profile-body col-md-6">
+            
+            <div class="user-image">
+                {{#if image}}
+                <img src="images/profile-pic/small/{{image}}" alt="profile pic">
+                <img onclick="togglePopup()" src="images/upload_dp.jpg" alt="profile pic">
+                {{else}}
+                <img onclick="togglePopup()" src="images/upload_dp.jpg" alt="profile pic">
+                {{/if}}
+            </div>
+
+            <div class="profile-text">
+                <div>Name : {{name}}</div>
+                <div>Email : {{email}}</div>
+                <div>Phone : {{phone}}</div>
+                <div>Address : {{address}}</div>
+                <div>Country : {{country}}</div>
+                <div>State : {{state}}</div>
+                <div>District : {{district}}</div>
+                <div>Pin : {{pin}}</div>
+            </div>
+            <div class="edit-button">
+                <a href="/edit-profile?id={{email}}">
+                    <div class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!--CONTENT END-->
+</body>
+
+
+
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        //$(".sidebar-body").hide();
+        $(".sidebar-button").click(
+            function () {
+                $(".sidebar").removeClass("sidebar-disapear");
+                $(".sidebar").addClass("sidebar-appear");
+                $(".content").hide();
+            }
+        );
+
+        $(".cross").click(() => {
+            $(".sidebar").removeClass("sidebar-appear");
+            $(".content").show();
+        }
+        );
+
+        $(".btn-plus").click(() => {
+            let amount = parseInt($("#amount").val());
+            amount += 1;
+            $("#amount").val(amount);
+        });
+
+        $(".btn-minus").click(() => {
+            let amount = parseInt($("#amount").val());
+            amount = (amount > 0) ? amount - 1 : 0;
+            $("#amount").val(amount);
+        });
+
+    });
+
+    // POPUP FUNCTION
+    function togglePopup() {
+        $('#alert-box').hide();
+        document.getElementById("popup-1").classList.toggle("active");
+    }
+
+    // IMAGE UPLOAD
+    const uploadImage = () => {
+        let formData = new FormData();
+        formData.append('imageFile', document.getElementById('imageFile').files[0]);
+
+        fetch('/upload-profile-pic', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then((result)=>{
+            $('#alert-box').show();
+            if(result.status == true){
+                $('#alert-box').html('Yayy, image is uploaded !');
+                $('#alert-box').addClass('alert alert-success');
+            } else {
+                $('#alert-box').html('Oops, error occured !');
+                $('#alert-box').addClass('alert alert-danger');
+            }
+        })
+        .catch(()=>{
+            $('#alert-box').show();
+            $('#alert-box').html('Oops, error occured !');
+            $('#alert-box').addClass('alert alert-danger');
+        });
+        }
+
+</script>
+
+</html>

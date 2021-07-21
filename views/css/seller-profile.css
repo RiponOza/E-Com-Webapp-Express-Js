@@ -1,0 +1,231 @@
+    body{
+        background-color: whitesmoke;
+    }
+    .main-header {
+        background-color: #043146de;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        color: white;
+        font-size: 25px;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+    
+    .header img{
+        height: 50px;
+        width: 100px;
+    }
+
+    #desc {
+        height: 100px;
+        margin-bottom: 10px;
+    }
+    .form-heading{
+        font-size: 27px;
+        font-weight: 700;
+    }
+    .main-header {
+        background-color: #043146de;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        color: white;
+        font-size: 25px;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+    .logo{
+        height: 50px;width: 100px;
+    }
+    .sidebar-button{
+        border: 0px;
+        color: rgb(226, 223, 223);
+        background-color: #011b27;
+        margin-right: 20px;
+        float: right;
+        padding-left: 10px;padding-right: 10px;padding-top: 5px;padding-bottom: 5px;
+        border-radius: 3px;
+        font-size: 20px;
+    }
+    .sidebar-button:hover{
+        background-color: #012333;
+    }
+   
+   .profile-pic{
+        height: 100px;
+        width: 120px;
+        cursor: pointer;
+        margin-top: 10px;margin-bottom: 10px;margin-left: 10px;
+   }
+
+   .user-image{
+       margin: 20px 0px 20px 0px;
+   }
+
+   .user-image img{
+       cursor: pointer;
+       height: 200px;
+       width: 200px;
+   }
+
+    .sidebar{
+        position: absolute;
+        top:0;left:-257px;
+        display: block;
+        z-index: 2;
+        width: 257px;
+        height: 100%;
+        background-color: #042331; 
+        transition: 0.4s;
+    }
+    
+    .sidebar-appear{
+        left:0;
+    }
+
+    .background{
+        background-color: rgba(128, 128, 128, 0.671);
+        height: 100%;
+        width: 100%;
+    }
+    
+    .sidebar header{
+        background-color:#063146 ;
+    }
+    .sidebar ul{
+        list-style-type: none;
+        padding-left: 0px;
+
+    }
+    .sidebar ul li{
+        width: 100%;
+        padding-top: 15px;padding-bottom: 15px;
+        border-bottom: 1px solid black;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 20px;
+        transition: .4s;
+        box-sizing: border-box;
+    }
+    .sidebar ul li:hover{
+        padding-left: 27px;
+    }
+    .sidebar ul li a{
+        text-decoration: none;
+        color: rgb(224, 221, 221);
+        font-size: 17px;
+        padding-left: 20px;
+    }
+    .cross{
+        float: right;
+        position: relative;
+        right: 30px;top:30px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+    }
+    .cross i{
+        font-size: 30px;
+        transition: 0.2s;
+    }
+    .cross i:hover{
+        font-size: 31px;
+    }
+
+    .profile-body{
+        padding-left: 70px;
+    }
+    .profile-text{
+        font-size: 20px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+    #content-profile-pic{
+        height: 200px;
+        width: 200px;
+        overflow: hidden;
+    }
+    #content-profile-pic img{
+        height: 200px;
+        width: 200px;
+    }
+
+    /* POPUP START */
+    .popup .overlay {
+        position:fixed;
+        top:0px;
+        left:0px;
+        width:100vw;
+        height:100vh;
+        background:rgba(0,0,0,0.7);
+        z-index:1;
+        display:none;
+      }
+       
+      .popup .content {
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%) scale(0);
+        background:#fff;
+        width:95%;
+        max-width:500px;
+        height:250px;
+        z-index:2;
+        text-align:center;
+        padding:50px 20px 10px 20px;
+        box-sizing:border-box;
+        font-family:"Open Sans",sans-serif;
+      }
+       
+      .popup .close-btn {
+        cursor:pointer;
+        position:absolute;
+        right:20px;
+        top:20px;
+        width:30px;
+        height:30px;
+        background:#222;
+        color:#fff;
+        font-size:25px;
+        font-weight:600;
+        line-height:30px;
+        text-align:center;
+        border-radius:50%;
+      }
+
+      .content button{
+          margin-top: 20px;
+      }
+
+      .content input{
+        font-weight: 400;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+       
+      .popup.active .overlay {
+        display:block;
+      }
+       
+      .popup.active .content {
+        transition:all 300ms ease-in-out;
+        transform:translate(-50%,-50%) scale(1);
+      }
+       
+     /*  button {
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        padding:15px;
+        font-size:18px;
+        border:2px solid #222;
+        color:#222;
+        text-transform:uppercase;
+        font-weight:600;
+        background:#fff;
+      }
+ */
+    /* POPUP END */
+
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap-css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/seller-products.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="jquery/jquery.js"></script>
+    <title>my products</title>
+</head>
+
+
+<body>
+    <!--SIDEBAR-->
+    <div class="sidebar">
+        <header>
+            {{#if session.image}}
+            <img class="profile-pic" src="images/{{session.image}}" alt="profile pic">
+            {{else}}
+            <img class="profile-pic" src="images/user_default_logo.jpg" alt="profile pic">
+            {{/if}}
+            <span class="cross"><i class="fa fa-times" aria-hidden="true"></i></span>
+        </header>
+        <ul>
+            <li>
+                <a href="/seller-dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="/add-product"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Product</a>
+            </li>
+            <li>
+                <a href="/my-products"><i class="fa fa-linode" aria-hidden="true"></i> My Products</a>
+            </li>
+            <li>
+                <a href="/seller-profile?id={{session.userId}}"><i class="fa fa-user" aria-hidden="true"></i> My
+                    Profile</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-question-circle-o" aria-hidden="true"></i> About</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a>
+            </li>
+            <li>
+                <a href="/seller-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+    <!--SIDEBAR ENDING-->
+
+    <header class="main-header">
+        <button class="sidebar-button"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></button>
+        <img class="logo" src="images/logo.jpg" alt="logo">
+    </header>
+    <!--CONTENT START-->
+    <div class="content">
+        <div class="container py-0">
+            <div class="product-header">
+                <i class="fa fa-linode" aria-hidden="true"></i> My Products ({{products.length}})
+            </div>
+            {{#if products}}
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- List group-->
+                    <ul class="list-group shadow">
+                        <!-- list group item-->
+                        {{#each products}}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <span class="product-image col-md-6">
+                                    <img src="/images/{{this.img_name}}" alt="product"
+                                        class="ml-lg-5 order-1 order-lg-2">
+                                </span>
+                                <span class="product-body col-md-6">
+                                    <div class="product-text">
+                                        <h5>{{this.item_name}}</h5>
+                                        <div class="product-price">Price: {{this.price}} &#x20B9</div>
+                                        <div class="product-type">Type: {{this.type}} <i class="fa fa-shopping-cart"
+                                                aria-hidden="true"></i>[{{this.amount}} items left]</div>
+
+                                    </div>
+                                    <div class=" btn-group">
+                                        <a href="/seller-product-update?id={{this.id}}">
+                                            <button class="btn btn-primary"><i class="fa fa-pencil-square-o"
+                                                    aria-hidden="true"></i> Edit</button>
+                                        </a>
+                                        <a href="/delete-product?id={{this.id}}">
+                                            <button class="btn btn-danger"><i class="fa fa-trash-o"
+                                                    aria-hidden="true"></i>
+                                                Delete</button>
+                                        </a>
+                                    </div>
+                                </span>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul> <!-- End -->
+                </div>
+            </div>
+            {{else}}
+            <div class="alert alert-danger text-center">
+                <h2><i class="fa fa-frown-o" aria-hidden="true"></i> Oops! No item available.</h2>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</body>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$(".sidebar-body").hide();
+        $(".sidebar-button").click(
+            function () {
+                $(".sidebar").removeClass("sidebar-disapear");
+                $(".sidebar").addClass("sidebar-appear");
+                $(".content").hide();
+            }
+        );
+
+        $(".cross").click(
+            function () {
+                $(".sidebar").removeClass("sidebar-appear");
+                $(".content").show();
+            }
+        );
+
+    });
+</script>
+
+</html>

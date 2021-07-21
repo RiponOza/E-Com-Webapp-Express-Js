@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap-css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/seller-dashboard.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="jquery/jquery.js"></script>
+    <title>dashboard</title>
+</head>
+
+
+<body>
+
+<header class="main-header">
+    <div class="sidebar-button"><i class="fa fa-bars fa-lg"
+        aria-hidden="true"></i></div>
+    <img class="logo" src="images/logo.jpg" alt="logo">
+    <div class="user_email_text">{{session.userId}}</div>
+</header>
+
+<!--SIDEBAR-->
+<div class="sidebar">
+        <header>
+            {{#if session.image}}
+                <img class="profile-pic" src="images/profile-pic/small/{{session.image}}" alt="profile pic">
+            {{else}}
+                <img class="profile-pic" src="images/user_default_logo.jpg" alt="profile pic">
+            {{/if}}
+            <span class="cross"><i class="fa fa-times" aria-hidden="true"></i></span>
+        </header>
+        <ul>
+            <li>
+                <a href="/seller-dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="/add-product"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Product</a>
+            </li>
+            <li>
+                <a href="/my-products"><i class="fa fa-linode" aria-hidden="true"></i> My Products</a>
+            </li>
+            <li>
+                <a href="/seller-profile?id={{session.userId}}"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-question-circle-o" aria-hidden="true"></i> About</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a>
+            </li>
+            <li>
+                <a href="/seller-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+<!--SIDEBAR ENDING-->
+<div class="content">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {{#if status}}
+            <div class="{{class}}" id="status">{{status}}</div>
+            {{/if}}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+</body>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$(".sidebar-body").hide();
+        $(".sidebar-button").click(
+            function () {
+                $(".sidebar").removeClass("sidebar-disapear");
+                $(".sidebar").addClass("sidebar-appear");
+                $(".content").hide();
+            }
+        );
+
+        $(".cross").click(
+            function () {
+                $(".sidebar").removeClass("sidebar-appear");
+                $(".content").show();
+            }
+        );
+
+       setTimeout(()=>{
+            $("#status").hide();
+       }, 3000);
+
+    });
+</script>
+
+</html>

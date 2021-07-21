@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap-css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/seller-login.css" />
+    <script src="jquery/jquery.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>seller login</title>
+</head>
+
+<body>
+<div class="header">
+    <img  src="images/logo.jpg">
+    <span class="register">
+        <a href="/seller-register"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
+    </span>
+</div>
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 login-form">
+            <div class="form-header">
+                Seller Sign In
+            </div>
+            <form action="/seller-login" method="POST">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        name="email" placeholder="Enter email" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                </div>
+                <br/>
+                {{#if status}}
+                    <div class="{{class}}" id="status">{{status}}</div><br/>
+                {{/if}}
+                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+            </form>
+            <a href="/forget-password">forget password ? click here.</a>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+</body>
+
+
+<script>
+
+    setTimeout(()=>{
+        $("#status").hide();
+    }, 3000);
+
+</script>
+</html>

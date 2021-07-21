@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap-css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/add-product.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="/jquery/jquery.js"></script>
+    <title>add product</title>
+</head>
+
+
+<body>
+    <!--SIDEBAR-->
+    <div class="sidebar">
+        <header>
+            {{#if session.image}}
+            <img class="profile-pic" src="images/{{session.image}}" alt="profile pic">
+            {{else}}
+            <img class="profile-pic" src="images/user_default_logo.jpg" alt="profile pic">
+            {{/if}}
+            <span class="cross"><i class="fa fa-times" aria-hidden="true"></i></span>
+        </header>
+        <ul>
+            <li>
+                <a href="/seller-dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="/add-product"><i class="fa fa-plus-square" aria-hidden="true"></i> Add Product</a>
+            </li>
+            <li>
+                <a href="/my-products"><i class="fa fa-linode" aria-hidden="true"></i> My Products</a>
+            </li>
+            <li>
+                <a href="/seller-profile?id={{session.userId}}"><i class="fa fa-user" aria-hidden="true"></i> My
+                    Profile</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-question-circle-o" aria-hidden="true"></i> About</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a>
+            </li>
+            <li>
+                <a href="/seller-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+    <!--SIDEBAR ENDING-->
+
+
+
+    <header class="main-header">
+        <button class="sidebar-button"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></button>
+        <img class="logo" src="images/logo.jpg" alt="logo">
+    </header>
+    <!--CONTENT START-->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-heading">
+                        Enter Product Details
+                    </div>
+                    {{#if status}}
+                    <div class="{{class}}">
+                        {{status}}
+                    </div>
+                    {{/if}}
+                    <div class="form-block text-center">
+                        <form class="form-group" action="/add-product" method="POST" autocomplete="off"
+                            enctype="multipart/form-data"><br />
+
+                            <input class="form-control" type="text" name="name" placeholder="Enter product name"
+                                required /><br />
+
+                            <select class="form-select" name="type" required>
+                                <option>Select Product Type</option>
+                                <option value="Phone">Phone</option>
+                                <option value="Phone">Phone</option>
+                                <option value="Watch">Watch</option>
+                                <option value="Electronic Items">Electronic Items</option>
+                                <option value="Car">Car</option>
+                                <option value="Bike">Bike</option>
+                                <option value="Book">Book</option>
+                                <option value="Cloth">Cloth</option>
+                                <option value="Painting">Painting</option>
+                            </select> <br />
+
+                            <input class="form-control" type="text" name="price" placeholder="Enter product price"
+                                required /><br />
+
+                            <div class="amount-box">
+                                <span>Enter Amount: &nbsp;</span>
+                                <input id="amount" name="amount" style="width: 20%;" class="form-control" type="text"
+                                    value="1" required />
+                                <div class="btn btn-primary btn-plus"><i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="btn btn-primary btn-minus"><i class="fa fa-minus" aria-hidden="true"></i>
+                                </div>
+                            </div><br />
+
+                            <textarea class="form-control" name="desc" id="desc"
+                                placeholder="Enter product description here" required></textarea>
+
+                            <input class="form-control" type="file" name="image" placeholder="Upload a product image"
+                                required /><br />
+
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
+                                Add Product</button><br />
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <!--CONTENT END-->
+</body>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$(".sidebar-body").hide();
+        $(".sidebar-button").click(
+            function () {
+                $(".sidebar").removeClass("sidebar-disapear");
+                $(".sidebar").addClass("sidebar-appear");
+                $(".content").hide();
+            }
+        );
+
+        $(".cross").click(() => {
+            $(".sidebar").removeClass("sidebar-appear");
+            $(".content").show();
+        }
+        );
+
+        $(".btn-plus").click(() => {
+            let amount = parseInt($("#amount").val());
+            amount += 1;
+            $("#amount").val(amount);
+        });
+
+        $(".btn-minus").click(() => {
+            let amount = parseInt($("#amount").val());
+            amount = (amount > 0) ? amount - 1 : 0;
+            $("#amount").val(amount);
+        });
+
+    });
+</script>
+
+</html>
